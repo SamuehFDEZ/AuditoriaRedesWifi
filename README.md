@@ -252,9 +252,12 @@ Decimos que no para obtener el fichero
  
 ```
 Select the timeout for capturing the handshake [20]:
-> 
+>
+
 ```
+
 Podemos no escribir nada y airggedon tomará los 20 segundos propuestos de timeout
+
 ---
 
 **Paso 3.5 —Obtención del handshake**
@@ -264,8 +267,11 @@ Podemos no escribir nada y airggedon tomará los 20 segundos propuestos de timeo
  BSSID              PWR  Beacons  #Data  CH  MB   ENC   ESSID
  AA:BB:CC:DD:EE:FF  -45      120    230   6  130  WPA2  MiRedWiFi
  11:22:33:44:55:66  -72       45     12  11   54  WPA2  OtraRed
+
 ```
+
 Airggedon nos avisará de la captura del handshake con el mensaje WPA HANDSHAKE: BSSID, luego nos pedirá donde guardar el fichero de extensión cap
+
 ---
 
  
