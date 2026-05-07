@@ -1,6 +1,9 @@
 # 🎭 Ataque Evil Twin contra WPA2-PSK
 ### Práctica de Seguridad en Redes Inalámbricas
- 
+
+<img width="700" height="auto" alt="image" src="https://github.com/user-attachments/assets/db590a4b-6933-44a6-8bd6-8ec3fdf27ecf" />
+
+<br><br>
 > ⚠️ **AVISO LEGAL**: Este documento tiene fines **exclusivamente educativos**. La realización de estos ataques sin autorización explícita sobre redes ajenas es **ilegal** y está penada por la ley. Realizar únicamente en entornos controlados de laboratorio con autorización.
  
 ---
