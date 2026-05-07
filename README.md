@@ -174,7 +174,7 @@ Desde el menú principal, seleccionar:
 > 2) Put interface in monitor mode
 ```
  
-El adaptador pasará a llamarse `wlan0mon` (o similar).
+El adaptador pasará a llamarse `wlan0mon`.
  
 ---
  
@@ -187,14 +187,18 @@ En el menú principal seleccionar:
 ```
 > 7) Evil Twin attacks menu
 ```
- 
+A continuación, seleccionar la opción del portal cautivo:
+```
+> 9) Evil Twin portal cautivo
+```
+
 **Paso 2.2 — Escanear redes disponibles**
  
 ```
-> 1) Scan for targets (monitor mode needed)
+> 1) Escaneo de interfazes (modo monitor requerido)
 ```
  
-Airgeddon lanzará `airodump-ng` y mostrará todas las redes WiFi cercanas. Esperar **al menos 20-30 segundos** para capturar suficiente información.
+Airgeddon lanzará `airodump-ng` y mostrará todas las redes WiFi cercanas. Esperar **al menos 20-30 segundos** para capturar suficiente información, es importante tener en cuenta que cuanto más tiempo pase, más canales se obtendrán y se podrán escanear redes wifi con número de canales elevados (columna CH).
  
 ```
  BSSID              PWR  Beacons  #Data  CH  MB   ENC   ESSID
@@ -220,32 +224,50 @@ Pulsar `Ctrl+C` para detener el escaneo y seleccionar el número correspondiente
  
 Esta opción crea un AP gemelo con portal cautivo que solicita la contraseña WPA.
  
-**Paso 3.2 — Configurar el ataque de deautenticación**
+**Paso 3.2 — Configurar el ataque de deautenticación para la obtención del handshake**
  
 Airgeddon permite elegir el método de desautenticación:
  
 ```
-Do you want to use deauth / disassoc mdk attacks? [y/n]: y
+Do you want to use deauth / disassoc mdk attacks? [y/n]: n
 ```
- 
+En este caso le decimos que no ya que se requeriría de otra interfaz aparte de la `wlan0mon`
 Seleccionar el tipo:
 ```
-> 1) mdk3/mdk4 deauth
 > 2) aireplay-ng deauth
 ```
  
-> 💡 **Recomendación**: `mdk4` es más efectivo para expulsar a todos los clientes de la red objetivo.
- 
-**Paso 3.3 — Seleccionar idioma del portal cautivo**
+> 💡 **Recomendación**: `mdk4` es más efectivo para expulsar a todos los clientes de la red objetivo, aunque basta con aireplay-ng para esta práctica.
+
+**Paso 3.3 — Seleccionar la existencia de handshake**
  
 ```
-Select the language for the captive portal:
-> 1) English
-> 2) Spanish
+Do you have a handshake file for being used? Y/n
+> n
 > ...
 ```
+Decimos que no para obtener el fichero
+
+**Paso 3.4 — Seleccionar timeout del ataque de deautenticación**
  
+```
+Select the timeout for capturing the handshake [20]:
+> 
+```
+Podemos no escribir nada y airggedon tomará los 20 segundos propuestos de timeout
 ---
+
+**Paso 3.5 —Obtención del handshake**
+ 
+```
+ CH 7                           [WPA HANDSHAKE: AA:BB:CC:DD:EE:FF]
+ BSSID              PWR  Beacons  #Data  CH  MB   ENC   ESSID
+ AA:BB:CC:DD:EE:FF  -45      120    230   6  130  WPA2  MiRedWiFi
+ 11:22:33:44:55:66  -72       45     12  11   54  WPA2  OtraRed
+```
+Airggedon nos avisará de la captura del handshake con el mensaje WPA HANDSHAKE: BSSID, luego nos pedirá donde guardar el fichero de extensión cap
+---
+
  
 ### 🌐 FASE 4 — Creación del AP gemelo y portal cautivo
  
@@ -314,7 +336,6 @@ Una vez verificada la contraseña:
  
 ```
 ✅ AP gemelo activo en el mismo canal
-✅ Víctima desconectada de la red legítima  
 ✅ Víctima conectada al AP gemelo
 ✅ Víctima ha introducido la contraseña
 ✅ Contraseña verificada correctamente
